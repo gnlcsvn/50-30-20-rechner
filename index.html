@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>50/30/20 Rechner</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>50/30/20 Rechner</h1>
+    <p>
+      Die 50-30-20-Regel ist eine einfache Faustregel zur Budgetplanung. Sie hilft dabei, das monatliche Einkommen sinnvoll aufzuteilen:<br>
+      50% des Einkommens sind für notwendige Ausgaben wie Miete und Lebensmittel vorgesehen, 30% für persönliche Wünsche und Freizeit, und 20% werden für die finanzielle Vorsorge und Vermögensaufbau zurückgelegt.
+    </p>
+    <form id="incomeForm">
+      <label for="netIncome">Nettoeinkommen (in €):</label>
+      <input type="number" id="netIncome" name="netIncome" required>
+      <button type="submit">Berechnen</button>
+    </form>
+    <div id="result" class="result">
+      <h2>Ergebnis</h2>
+      <p>Notwendige Ausgaben (50%): <span id="haushaltAmount">0,00</span> €</p>
+      <p>Persönliche Wünsche & Freizeit (30%): <span id="ausgebenAmount">0,00</span> €</p>
+      <p>Finanzielle Vorsorge & Vermögensaufbau (20%): <span id="sparenAmount">0,00</span> €</p>
+    </div>
+    <div class="investment-calculator">
+      <h2>Vermögensentwicklung</h2>
+      <p>Wenn du das gesparte Vermögen breit gestreut in einen ETF anlegst, kannst du über einen langen Zeitraum eine attraktive Rendite erwirtschaften. Der Rechner geht von einer marktüblichen, konservativen Rendite von 5% aus. Ändere die Rendite und den Anlagehorizont (standardmäßig bis zum Renteneintritt), um die Veränderung des Vermögenszuwachses zu sehen.</p>
+      <div class="investment-inputs">
+        <div class="input-group">
+          <label for="returnRate">Jährliche Rendite (%):</label>
+          <input type="number" id="returnRate" value="5" min="0" max="20" step="0.5">
+        </div>
+        <div class="input-group">
+          <label for="years">Anlagehorizont (Jahre):</label>
+          <input type="number" id="years" value="30" min="1" max="50">
+        </div>
+      </div>
+      <div class="investment-result">
+        <p>Monatliche Sparrate: <span id="monthlySavings">0,00</span> €</p>
+        <p>Jährliche Einzahlung: <span id="yearlySavings">0,00</span> €</p>
+        <p>Gesamteinzahlung: <span id="totalContribution">0,00</span> €</p>
+        <p>Zinserträge: <span id="totalReturn">0,00</span> €</p>
+        <p class="final-amount">Endkapital: <span id="finalAmount">0,00</span> €</p>
+      </div>
+      <div class="chart-container">
+        <canvas id="investmentChart"></canvas>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
