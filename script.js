@@ -1,5 +1,20 @@
 // script.js
 
+document.getElementById('incomeForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+  
+    const netIncomeInput = document.getElementById('netIncome');
+    const netIncome = parseFloat(netIncomeInput.value);
+  
+    if (isNaN(netIncome) || netIncome <= 0) {
+      alert('Bitte geben Sie ein gültiges Nettoeinkommen ein.');
+      resetResults();
+      return;
+    }
+  
+    calculateDistribution(netIncome);
+});
+  
 function calculateDistribution(netIncome) {
   // Berechnung basierend auf dem aktuellen Sparanteil
   const sparen = netIncome * 0.2;
