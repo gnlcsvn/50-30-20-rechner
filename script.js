@@ -1,32 +1,5 @@
 // script.js
 
-document.getElementById('incomeForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-  
-    const netIncomeInput = document.getElementById('netIncome');
-    const netIncome = parseFloat(netIncomeInput.value);
-  
-    if (isNaN(netIncome) || netIncome <= 0) {
-      alert('Bitte geben Sie ein gültiges Nettoeinkommen ein.');
-      return;
-    }
-  
-    // Berechnungen nach der 50‑30‑20‑Regel
-    const haushalt = netIncome * 0.5;
-    const ausgeben = netIncome * 0.3;
-    const sparen = netIncome * 0.2;
-  
-    // Ergebnisse in der Webseite anzeigen
-    document.getElementById('haushaltAmount').textContent = haushalt.toFixed(2);
-    document.getElementById('ausgebenAmount').textContent = ausgeben.toFixed(2);
-    document.getElementById('sparenAmount').textContent = sparen.toFixed(2);
-
-    // Investitionsberechnung mit monatlicher Sparrate durchführen
-    const monthlySavings = sparen;
-    const yearlySavings = monthlySavings * 12;
-    calculateInvestment(yearlySavings);
-});
-  
 function calculateDistribution(netIncome) {
   // Berechnung basierend auf dem aktuellen Sparanteil
   const sparen = netIncome * 0.2;
@@ -42,6 +15,13 @@ function calculateDistribution(netIncome) {
   const monthlySavings = sparen;
   const yearlySavings = monthlySavings * 12;
   calculateInvestment(yearlySavings);
+}
+
+function resetResults() {
+  document.getElementById('haushaltAmount').textContent = '0,00';
+  document.getElementById('ausgebenAmount').textContent = '0,00';
+  document.getElementById('sparenAmount').textContent = '0,00';
+  calculateInvestment(0);
 }
 
 let investmentChart = null;
@@ -166,4 +146,14 @@ document.getElementById('years').addEventListener('input', function() {
   if (netIncomeInput.value) {
     calculateDistribution(parseFloat(netIncomeInput.value));
   }
+});
+
+document.getElementById('netIncome').addEventListener('input', function(event) {
+  const netIncome = parseFloat(event.target.value);
+  if (isNaN(netIncome) || netIncome <= 0) {
+    resetResults();
+    return;
+  }
+
+  calculateDistribution(netIncome);
 });
