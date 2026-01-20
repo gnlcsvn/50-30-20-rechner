@@ -24,7 +24,7 @@ body {
     color: #555;
   }
   
-  form {
+.income-form {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
